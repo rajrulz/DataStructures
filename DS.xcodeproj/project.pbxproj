@@ -12,6 +12,7 @@
 		EF0CB14B2681B7B500FC1074 /* ConcurrentOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CB14A2681B7B500FC1074 /* ConcurrentOperations.swift */; };
 		EF0CB14E2681E52800FC1074 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CB14D2681E52800FC1074 /* AsyncOperation.swift */; };
 		EF0CB1522685153800FC1074 /* Trie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CB1512685153800FC1074 /* Trie.swift */; };
+		EF0CB1562687012300FC1074 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0CB1552687012300FC1074 /* Tree.swift */; };
 		EFCFB72626768FE000FDB4CB /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCFB72526768FE000FDB4CB /* Threading.swift */; };
 		EFDBA557266C0F7E00306B42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDBA556266C0F7E00306B42 /* AppDelegate.swift */; };
 		EFDBA559266C0F7E00306B42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDBA558266C0F7E00306B42 /* SceneDelegate.swift */; };
@@ -28,6 +29,7 @@
 		EF0CB14A2681B7B500FC1074 /* ConcurrentOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrentOperations.swift; sourceTree = "<group>"; };
 		EF0CB14D2681E52800FC1074 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		EF0CB1512685153800FC1074 /* Trie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trie.swift; sourceTree = "<group>"; };
+		EF0CB1552687012300FC1074 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		EFCFB72526768FE000FDB4CB /* Threading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		EFDBA553266C0F7E00306B42 /* DS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFDBA556266C0F7E00306B42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,14 @@
 			path = Trie;
 			sourceTree = "<group>";
 		};
+		EF0CB1542687011600FC1074 /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				EF0CB1552687012300FC1074 /* Tree.swift */,
+			);
+			path = Tree;
+			sourceTree = "<group>";
+		};
 		EFDBA54A266C0F7E00306B42 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +114,7 @@
 		EFDBA555266C0F7E00306B42 /* DS */ = {
 			isa = PBXGroup;
 			children = (
+				EF0CB1542687011600FC1074 /* Tree */,
 				EF0CB1502685151C00FC1074 /* Trie */,
 				EF0CB1482681B77700FC1074 /* Concurrency */,
 				EF0CB1442680E47D00FC1074 /* Strings */,
@@ -204,6 +215,7 @@
 				EFDBA557266C0F7E00306B42 /* AppDelegate.swift in Sources */,
 				EF0CB14B2681B7B500FC1074 /* ConcurrentOperations.swift in Sources */,
 				EF0CB1522685153800FC1074 /* Trie.swift in Sources */,
+				EF0CB1562687012300FC1074 /* Tree.swift in Sources */,
 				EFDBA559266C0F7E00306B42 /* SceneDelegate.swift in Sources */,
 				EF0CB13B267FC57600FC1074 /* DP.swift in Sources */,
 				EF0CB14E2681E52800FC1074 /* AsyncOperation.swift in Sources */,

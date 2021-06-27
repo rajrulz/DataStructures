@@ -21,7 +21,13 @@ class ViewController: UIViewController {
 //        testString()
 //        testOperationQueues()
         print("view did load")
-        testTrie()
+//        testArray()
+//        var array = [1,5,78,6,4,3,75]
+//        array.bubbleSorted { $0 > $1 }
+//        print(array)
+//        testTrie()
+        testTreeCreation()
+        print("tree creation complete")
     }
 
     func testGCD() {
@@ -60,14 +66,20 @@ class ViewController: UIViewController {
 
     func testArray() {
         let targetSum = 12
-        print("get pairs of target sum \(targetSum) in sorted array")
-        print(DSArray().getPairsOfSum(targetSum, inSortedArray: [1,2,3,4,5,6,7,8,9,10]))
-        print("get pairs of target sum \(targetSum) in sorted & rotated array")
-        print(DSArray().getPairsOfSum(targetSum, inSortedAndRotatedArray: [3,4,5,6,7,8,9,1,2]))
-
-        print("index of num \(15) in sorted & rotated array")
-        print(DSArray().indexOfNum(15, inSortedAndRotatedArray: [11,12,13,14,5,6,7,8]))
+//        print("get pairs of target sum \(targetSum) in sorted array")
+//        print(DSArray().getPairsOfSum(targetSum, inSortedArray: [1,2,3,4,5,6,7,8,9,10]))
+//        print("get pairs of target sum \(targetSum) in sorted & rotated array")
+//        print(DSArray().getPairsOfSum(targetSum, inSortedAndRotatedArray: [3,4,5,6,7,8,9,1,2]))
+//
+//        print("index of num \(15) in sorted & rotated array")
+//        print(DSArray().indexOfNum(15, inSortedAndRotatedArray: [11,12,13,14,5,6,7,8]))
         
+        let dsArray = DSArray()
+        var sortedArray: [Int] = []
+        dsArray.insert(num: 12, insortedArray: &sortedArray)
+        dsArray.insert(num: 12, insortedArray: &sortedArray)
+
+        print(sortedArray)
 //        print(UserMainCode().topologyType(input1: 5, input2: 4, input3: [1,2,2,4,5], input4: [2,3,4,5,3]))
     }
 
@@ -99,5 +111,26 @@ class ViewController: UIViewController {
         trie.insert(word: "ball")
         print(trie.getWordsPrefixed(with: ""))
     }
+
+    func testTreeCreation() {
+        let tree = Tree<Character>()
+        tree.root = tree.create(fromInorder: ["A","B","C","D","E","F"], fromPreorder: ["A","B","C","D","E","F"])
+        tree.inorderTraversal(tree.root)
+    }
 }
 
+extension Array where Element == Int {
+    mutating func bubbleSorted(by condition: ((Int,Int)-> Bool)) {
+        // bubble sort
+        for i in stride(from: 0, to: self.count, by: 1) {
+            for j in stride(from: 0, to: self.count - i - 1, by: 1) {
+                if !condition(self[j], self[j+1]) {
+                    // swap
+                    let temp = self[j]
+                    self[j] = self[j+1]
+                    self[j+1] = temp
+                }
+            }
+        }
+    }
+}

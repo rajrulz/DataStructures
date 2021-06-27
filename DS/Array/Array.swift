@@ -9,6 +9,35 @@ import Foundation
 
 struct DSArray {
 
+    /// strategy insert num in sortedArray by doing a binary search for index where to be inserted
+    func insert(num: Int, insortedArray array: inout [Int]) {
+        var low = 0
+        var high = array.count - 1
+        guard high >= 0 else {
+            array.append(num)
+            return
+        }
+        
+        while low < high {
+            let mid = (low + high) / 2
+            if array[mid] == num {
+                array.insert(num, at: mid)
+                return
+            } else if num < array[mid] {
+                high = mid - 1
+            } else {
+                low = mid + 1
+            }
+        }
+        
+        // control comes here when low == high 
+        if num > array[low] {
+            array.insert(num, at: low+1)
+        } else {
+            array.insert(num, at: low)
+        }
+    }
+
     func getPairsOfSum(_ targetSum: Int, inSortedArray array: [Int]) -> [(Int, Int)] {
         var i = 0
         var j = array.count - 1

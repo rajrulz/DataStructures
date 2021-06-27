@@ -14,7 +14,7 @@ class DP {
         
         var resultPath: [Int] = []
         var minPathSum = Int.max
-        func minimumCostPath(from x: Int, _ y: Int, in cost: [[Int]], path: [Int], pathSum: Int)  {
+        func minimumCostPath(from x: Int, _ y: Int, in cost: [[Int]], path: [Int], pathSum: Int) {
             if x == cost.count - 1 && y == cost[0].count - 1 {
                 let pathSum = pathSum + cost[x][y]
                 let path = path + [cost[x][y]]
