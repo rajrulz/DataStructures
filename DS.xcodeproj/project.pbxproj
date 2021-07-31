@@ -21,6 +21,9 @@
 		EFDBA560266C0F8300306B42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFDBA55F266C0F8300306B42 /* Assets.xcassets */; };
 		EFDBA563266C0F8300306B42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFDBA561266C0F8300306B42 /* LaunchScreen.storyboard */; };
 		EFDBA56D266C0F9E00306B42 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDBA56C266C0F9E00306B42 /* Array.swift */; };
+		EFF487E32696383700AF1559 /* Producer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF487E22696383700AF1559 /* Producer.swift */; };
+		EFF487E62696384300AF1559 /* Consumer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF487E52696384300AF1559 /* Consumer.swift */; };
+		EFF487E926963C3600AF1559 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF487E826963C3600AF1559 /* Queue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		EFDBA562266C0F8300306B42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFDBA564266C0F8300306B42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFDBA56C266C0F9E00306B42 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		EFF487E22696383700AF1559 /* Producer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Producer.swift; sourceTree = "<group>"; };
+		EFF487E52696384300AF1559 /* Consumer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consumer.swift; sourceTree = "<group>"; };
+		EFF487E826963C3600AF1559 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,7 @@
 		EFDBA555266C0F7E00306B42 /* DS */ = {
 			isa = PBXGroup;
 			children = (
+				EFF487E12696381A00AF1559 /* ProducerConsumer */,
 				EF0CB1542687011600FC1074 /* Tree */,
 				EF0CB1502685151C00FC1074 /* Trie */,
 				EF0CB1482681B77700FC1074 /* Concurrency */,
@@ -137,6 +144,16 @@
 				EFDBA56C266C0F9E00306B42 /* Array.swift */,
 			);
 			path = Array;
+			sourceTree = "<group>";
+		};
+		EFF487E12696381A00AF1559 /* ProducerConsumer */ = {
+			isa = PBXGroup;
+			children = (
+				EFF487E22696383700AF1559 /* Producer.swift */,
+				EFF487E52696384300AF1559 /* Consumer.swift */,
+				EFF487E826963C3600AF1559 /* Queue.swift */,
+			);
+			path = ProducerConsumer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +227,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFCFB72626768FE000FDB4CB /* Threading.swift in Sources */,
+				EFF487E926963C3600AF1559 /* Queue.swift in Sources */,
+				EFF487E62696384300AF1559 /* Consumer.swift in Sources */,
 				EFDBA55B266C0F7E00306B42 /* ViewController.swift in Sources */,
 				EFDBA56D266C0F9E00306B42 /* Array.swift in Sources */,
 				EFDBA557266C0F7E00306B42 /* AppDelegate.swift in Sources */,
@@ -218,6 +237,7 @@
 				EF0CB1562687012300FC1074 /* Tree.swift in Sources */,
 				EFDBA559266C0F7E00306B42 /* SceneDelegate.swift in Sources */,
 				EF0CB13B267FC57600FC1074 /* DP.swift in Sources */,
+				EFF487E32696383700AF1559 /* Producer.swift in Sources */,
 				EF0CB14E2681E52800FC1074 /* AsyncOperation.swift in Sources */,
 				EF0CB1462680E4AC00FC1074 /* Strings.swift in Sources */,
 			);

@@ -7,6 +7,30 @@
 
 import Foundation
 
+class Stack<T> {
+    private var array: [T] = []
+    func push(_ node: T) {
+        array.append(node)
+    }
+
+    func pop() -> T? {
+        guard !array.isEmpty else {
+            return nil
+        }
+        return array.removeLast()
+    }
+
+    func top() -> T? {
+        guard !array.isEmpty else {
+            return nil
+        }
+        return array.last
+    }
+
+    var isEmpty: Bool {
+        return array.isEmpty
+    }
+}
 class TreeNode<NodeValType: Hashable> {
     var val: NodeValType
     var left: TreeNode?
@@ -21,7 +45,38 @@ class TreeNode<NodeValType: Hashable> {
 
 class Tree<NodeValType: Hashable> {
     var root: TreeNode<NodeValType>?
-    
+
+    init(_ vals: [NodeValType?] = []) {
+        createTree(from: vals)
+    }
+
+    /// create tree from input as its present in leetcode
+    private func createTree(from array: [NodeValType?]) {
+        guard !array.isEmpty else {
+             return
+        }
+        guard let firstElement = array[0] else {
+            return
+        }
+        let arrayCount = array.count
+        root = TreeNode(val: firstElement)
+        var nodesArray: [TreeNode<NodeValType>?] = [root]
+        for i in stride(from: 1, to: arrayCount, by: 1) {
+            var node: TreeNode<NodeValType>?
+            if let val = array[i] {
+                node = TreeNode(val: val)
+            }
+            let parentIndex = (i-1)/2
+            let parentNode = nodesArray[parentIndex]
+            if i == parentIndex * 2 + 1 {
+                parentNode?.left = node
+            } else {
+                parentNode?.right = node
+            }
+            nodesArray.append(node)
+        }
+    }
+
     func create(fromInorder inorder: [NodeValType], fromPreorder preorder: [NodeValType]) -> TreeNode<NodeValType>? {
         var inorderIndexDict: [NodeValType: Int] = [:]
         var preorderIndexDict: [NodeValType: Int] = [:]
@@ -88,4 +143,74 @@ class Tree<NodeValType: Hashable> {
             }
         }
     }
+
+    func convertTreeToFullBinaryTree(_ root: TreeNode<NodeValType>?) -> TreeNode<NodeValType>? {
+        if let node = root {
+            let leftTree = convertTreeToFullBinaryTree(node.left)
+            let rightTree = convertTreeToFullBinaryTree(node.right)
+            if leftTree == nil && rightTree != nil {
+                // has only right child
+                return rightTree
+            } else if rightTree == nil && leftTree != nil {
+                // has only left child
+                return leftTree
+            } else {
+                // has both childs
+                node.left = leftTree
+                node.right = rightTree
+                return node
+            }
+        } else {
+            return nil
+        }
+    }
+
+    func iterativePostOrderTraversal(ofTree node: TreeNode<NodeValType>?) {
+        // same as inorder traversal if we consider right first then left
+        var node = node
+        let stack = Stack<TreeNode<NodeValType>>()
+        while true {
+            while node != nil {
+                print(node?.val as Any)
+                stack.push(node!)
+                node = node?.right
+            }
+            
+            if stack.isEmpty {
+                break
+            } else {
+                node = stack.pop()
+                node = node?.left
+            }
+        }
+    }
+
+//    func possiblePreOrdersFromInorder(_ inorder: [Int]) {
+//        
+//        var preorders: [[Int]] = []
+//        func preOrderTraversal(from root: TreeNode<Int>?) {
+//            if let root = root {
+//                
+//            }
+//        }
+//        func constructTree(fromInorder inorder: [Int] ) -> TreeNode<Int>? {
+//            if inorder.isEmpty {
+//                return nil
+//            }
+//            for (index,element) in inorder.enumerated() {
+//                let root = TreeNode<Int>(val: element)
+//                if index > 0 && index < inorder.count - 1 {
+//                    root.left = constructTree(fromInorder: Array(inorder[0...(index-1)]))
+//                    root.right = constructTree(fromInorder: Array(inorder[(index+1)...]))
+//                } else if index == 0{
+//                    root.right = constructTree(fromInorder: Array(inorder[(index+1)...]))
+//                } else {
+//                    root.left = constructTree(fromInorder: Array(inorder[0...(index-1)]))
+//                }
+//                return root
+//            }
+//        }
+//        
+//        
+//    }
 }

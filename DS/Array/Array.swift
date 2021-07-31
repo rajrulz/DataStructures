@@ -182,72 +182,112 @@ struct DSArray {
         str[i] = str[j]
         str[j] = temp
     }
+
+    /// asked in DEV REV
+    /// given coordinates of queens in a chess board and queries i.e coordinates of soldiers return these soldiers will remain alive or will be attacked by queen
+    func squaresUnderQueenAttack(n: Int, queens: [[Int]], queries: [[Int]]) -> [Bool] {
+        var chessBoard: [[Bool]] = []
+        // create chessBoard
+        for _ in 0..<n {
+            chessBoard.append(Array(repeating: false, count: n))
+        }
+        
+        // mark queens coordinate and its reachable coordinates as true
+        for queen in queens {
+            let x = queen[0]
+            let y = queen[1]
+            // place queen in chessboard
+            chessBoard[x][y] = true
+            
+            // diagonal reachable coordinates
+            for i in stride(from: 1, to: n, by: 1) {
+                if x - i >= 0 && y - i >= 0 {
+                    chessBoard[x-i][y-i] = true
+                }
+                if x + i < n && y + i < n {
+                    chessBoard[x+i][y+i] = true
+                }
+                if x - i >= 0 && y + i < n {
+                    chessBoard[x-i][y+i] = true
+                }
+                if x + i < n && y - i >= 0 {
+                    chessBoard[x+i][y-i] = true
+                }
+            }
+            
+            // row & col reachable coordinates
+            for i in stride(from: 0, to: n, by: 1) {
+                chessBoard[i][y] = true
+                chessBoard[x][i] = true
+            }
+        }
+        
+        print(chessBoard)
+        var result: [Bool] = []
+        // looping queries to check their coordinates lie on any attacking zone of any queen
+        // chessBoard[i][j] = false means [i,j] query can't be attacked
+        for query in queries {
+            result.append(chessBoard[query[0]][query[1]])
+        }
+        return result
+    }
+
+    /// asked in microsoft online assessment
+    func solution(_ A: Int, _ B: Int) -> Int {
+        var i = 1
+        var count = 0
+        while true {
+            let product = i * (i + 1)
+            if A <= product && product <= B {
+                count += 1
+                i += 1
+            } else if product < A {
+                i += 1
+            } else {
+                break
+            }
+        }
+        return count
+    }
+
+        func maxset(_ A: inout [Int]) -> [Int] {
+            var low = 0
+            var currSum = 0
+            var high = -1
+            var subArray: [Int] = []
+            var maxSumTuple = (0, 0, 0, Array<Int>()) // (sum, initialIndex, length, subArray)
+            for num in A {
+                if num >= 0 {
+                    subArray.append(num)
+                    high += 1
+                    currSum += num
+                } else {
+                    if high >= low {
+                        if currSum > maxSumTuple.0 {
+                            maxSumTuple = (currSum, low, high - low + 1, subArray)
+                        } else if currSum == maxSumTuple.0 {
+                            if maxSumTuple.2 < (high - low + 1) {
+                                maxSumTuple = (currSum, low, high - low + 1, subArray)
+                            }
+                        }
+                    }
+                    currSum = 0
+                    low = high + 2
+                    high = low - 1
+                    subArray.removeAll()
+                }
+            }
+
+            if high >= low {
+                if currSum > maxSumTuple.0 {
+                    maxSumTuple = (currSum, low, high - low + 1, subArray)
+                } else if currSum == maxSumTuple.0 {
+                    if maxSumTuple.2 < (high - low + 1) {
+                        maxSumTuple = (currSum, low, high - low + 1, subArray)
+                    }
+                }
+            }
+            return maxSumTuple.3
+        }
+
 }
-
-
-//class UserMainCode {
-//    enum Topology: Int {
-//        case bus
-//        case ring
-//        case star
-//        case unknown = -1
-//    }
-//    
-//    func topologyType(input1: Int, input2: Int, input3: [Int], input4: [Int]) -> Topology {
-//        let nodesCount = input1
-//        let edgesCount = input2
-//        let edgeStartPoints = input3
-//        let edgeEndPoints = input4
-//        
-//        // create graph
-//        typealias Node = Int
-//        var graph: [Node: [Node]] = [:]
-//        
-//        // intialize empty graph
-//        for i in 1...nodesCount {
-//            graph[i] = []
-//        }
-//
-//        // populate graph
-//        for index in stride(from: 0, to: edgeStartPoints.count, by: 1) {
-//            let startNode = edgeStartPoints[index]
-//            let endPoint = edgeEndPoints[index]
-//            if let adjacentNodes = graph[startNode] {
-//                graph[startNode] = adjacentNodes + [endPoint]
-//            }
-//        }
-//
-//        // deapth first search and get continuous paths
-//    }
-//
-//    func checkGraphIsStar(_ graph: [Int: [Int]], nodesCount: Int, edgesCount: Int) -> Bool {
-//        guard edgesCount == nodesCount - 1 else {
-//            return false
-//        }
-//        var starNode: Int?
-//        for node in graph.keys {
-//            if let adjNodes = graph[node], adjNodes.count == nodesCount - 1 {
-//                starNode = node
-//                break
-//            }
-//        }
-//        guard let middleStarNode = starNode else {
-//            return false
-//        }
-//        for node in 1...nodesCount {
-//            if node != middleStarNode,
-//               let adjNodes = graph[node],
-//               adjNodes.count == 1,
-//               adjNodes[0] == middleStarNode {
-//                continue
-//            } else {
-//                return false
-//            }
-//        }
-//        return true
-//    }
-//
-//    func checkGraphIsRing(_ graph: [Int: [Int]], nodesCount: Int, edgesCount: Int) -> Bool {
-//        
-//    }
-//}

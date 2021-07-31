@@ -34,6 +34,38 @@
             endingLineNumber = "45"
             landmarkName = "getWordsPrefixed(with:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "437A7E2D-96E9-4C7D-9209-0EB6ADCC5E0A - 3ee194adb6908377"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DS.Trie.getWordsPrefixed(with: Swift.String) -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raj_biswal/Documents/ios_Practice/DS/DS/Trie/Trie.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "986">
+               </Location>
+               <Location
+                  uuid = "437A7E2D-96E9-4C7D-9209-0EB6ADCC5E0A - 15ca20c0ad733647"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; Swift.String in DS.Trie.getWordsPrefixed(with: Swift.String) -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/raj_biswal/Documents/ios_Practice/DS/DS/Trie/Trie.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "59">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

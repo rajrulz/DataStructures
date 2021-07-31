@@ -26,8 +26,12 @@ class ViewController: UIViewController {
 //        array.bubbleSorted { $0 > $1 }
 //        print(array)
 //        testTrie()
-        testTreeCreation()
+//        testTreeCreation()
+//        testDP()
+//        print(self.solution(1,10))
         print("tree creation complete")
+        var array = [10, -1, 5, 5, 6, 4]
+//        print(squaresUnderQueenAttack(n: 100000, queens: [[1,1],[3,4]], queries: [[1,2],[3,4],[0,999], [999,999]]))
     }
 
     func testGCD() {
@@ -65,7 +69,7 @@ class ViewController: UIViewController {
     }
 
     func testArray() {
-        let targetSum = 12
+//        let targetSum = 12
 //        print("get pairs of target sum \(targetSum) in sorted array")
 //        print(DSArray().getPairsOfSum(targetSum, inSortedArray: [1,2,3,4,5,6,7,8,9,10]))
 //        print("get pairs of target sum \(targetSum) in sorted & rotated array")
@@ -85,14 +89,15 @@ class ViewController: UIViewController {
 
     func testDP() {
         let dp = DP()
-        print(dp.minCostPath(in: [[1,3,5,8],[4,2,1,7],[4,3,2,3]]))
-        print(dp.fibonacciOf(n: 50))
-        
+//        print(dp.minCostPath(in: [[1,3,5,8],[4,2,1,7],[4,3,2,3]]))
+//        print(dp.fibonacciOf(n: 50))
+        print(dp.noOfWaysToScore(13, usingPoints: [3,5,10]))
     }
 
     func testString() {
-        print(Strings().getPermutationsOf("abc"))
-        print(Strings().printPermuations(Array("abc"), ""))
+//        print(Strings().getPermutationsOf("abc"))
+//        print(Strings().printPermuations(Array("abc"), ""))
+        print(Strings().minNoOfSubstringsWithoutDuplicateChar("abcdfeeghdfajdbjfhjfgjrhkfnr"))
     }
 
     func testTrie() {
@@ -113,9 +118,23 @@ class ViewController: UIViewController {
     }
 
     func testTreeCreation() {
-        let tree = Tree<Character>()
-        tree.root = tree.create(fromInorder: ["A","B","C","D","E","F"], fromPreorder: ["A","B","C","D","E","F"])
-        tree.inorderTraversal(tree.root)
+//        let tree = Tree<Character>()
+//        tree.root = tree.create(fromInorder: ["A","B","C","D","E","F"], fromPreorder: ["A","B","C","D","E","F"])
+//        tree.inorderTraversal(tree.root)
+        
+//        let tree1 = Tree<Int>.init([1,2,nil,4,nil,6,7])
+//        tree1.iterativePostOrderTraversal(ofTree: tree1.root)
+        let tree = Tree<Int>()
+        tree.root = TreeNode(val: 0)
+        tree.root?.left = TreeNode(val: 1)
+        tree.root?.right = TreeNode(val: 2)
+        tree.root?.left?.left = TreeNode(val: 3)
+        tree.root?.right?.right = TreeNode(val: 4)
+        tree.root?.left?.left?.right = TreeNode(val: 5)
+        tree.root?.right?.right?.left = TreeNode(val: 6)
+        tree.root?.right?.right?.right = TreeNode(val: 7)
+        
+        tree.inorderTraversal(tree.convertTreeToFullBinaryTree(tree.root))
     }
 }
 
@@ -133,4 +152,7 @@ extension Array where Element == Int {
             }
         }
     }
+
+
 }
+

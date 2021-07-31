@@ -48,4 +48,30 @@ class Strings {
             }
         }
     }
+
+    /// Given a string, find the minimum number of substrings that it needs to be split so that there won’t be any duplicate character in each of the substrings.
+    func minNoOfSubstringsWithoutDuplicateChar(_ str: String) -> Int {
+        guard str.count > 0 else {
+            return 0
+        }
+        guard str.count > 1 else {
+            return 1
+        }
+        var count = 0
+        let str = Array(str)
+        var charDict: [Character: Int] = [:]
+        for ch in str {
+            if charDict[ch] == nil {
+                charDict[ch] = 1
+            } else {
+                count += 1
+                charDict.removeAll()
+                charDict[ch] = 1
+            }
+        }
+        if !charDict.isEmpty {
+            count += 1
+        }
+        return count
+    }
 }
