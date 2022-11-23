@@ -63,18 +63,18 @@
 			isa = PBXGroup;
 			children = (
 				EF8D693E292EA66F0083A224 /* Tree */,
-				EF8D6940292EA66F0083A224 /* ViewController.swift */,
 				EF8D6941292EA66F0083A224 /* Strings */,
 				EF8D6943292EA66F0083A224 /* Array */,
-				EF8D6945292EA66F0083A224 /* Assets.xcassets */,
-				EF8D6946292EA66F0083A224 /* LaunchScreen.storyboard */,
-				EF8D6948292EA66F0083A224 /* Main.storyboard */,
 				EF8D694A292EA66F0083A224 /* Concurrency */,
 				EF8D6952292EA66F0083A224 /* Trie */,
 				EF8D6954292EA66F0083A224 /* DP */,
 				EF8D6956292EA66F0083A224 /* AppDelegate.swift */,
 				EF8D6957292EA66F0083A224 /* Info.plist */,
 				EF8D6958292EA66F0083A224 /* SceneDelegate.swift */,
+				EF8D6940292EA66F0083A224 /* ViewController.swift */,
+				EF8D6945292EA66F0083A224 /* Assets.xcassets */,
+				EF8D6946292EA66F0083A224 /* LaunchScreen.storyboard */,
+				EF8D6948292EA66F0083A224 /* Main.storyboard */,
 			);
 			path = iOSThreading;
 			sourceTree = "<group>";
