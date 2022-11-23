@@ -18,6 +18,13 @@ class AsyncOperation: Operation {
     private var _isExecuting: Bool = false
     override private(set) var isExecuting: Bool {
         get {
+            // why we require to submit sync operation to read from the variable
+            // as read operations are thread safe.
+            
+            // indeed read operations are thread safe. But if we dont put the read as sync task.
+            // 1. there would be a race condition to read the variable
+            // 2. Chances are the variable is in inconsistent state and it will be read.
+            // ex: in Reader Writer problem if read operation are put as sync task then putting a bariier will hault all the tasks submitted till write operation is not completed but since read operation is independent of dispatch queue, Variable will be read in inconsistent state.
             return lockQueue.sync { () -> Bool in
                 return _isExecuting
             }
