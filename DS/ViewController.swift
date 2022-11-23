@@ -32,6 +32,9 @@ class ViewController: UIViewController {
         print("tree creation complete")
         var array = [10, -1, 5, 5, 6, 4]
 //        print(squaresUnderQueenAttack(n: 100000, queens: [[1,1],[3,4]], queries: [[1,2],[3,4],[0,999], [999,999]]))
+//        print(Solution().solve(3, [1,2], [2,1]))
+//        print(DSArray().longestSubsequenceCount([10, 22, 9, 33, 21, 50, 41, 60, 80]))
+        testProducerConsumer()
     }
 
     func testGCD() {
@@ -136,6 +139,31 @@ class ViewController: UIViewController {
         
         tree.inorderTraversal(tree.convertTreeToFullBinaryTree(tree.root))
     }
+
+    func testProducerConsumer() {
+
+        let producer = ProducerConsumerContainer.shared.producer
+        let consumer = ProducerConsumerContainer.shared.consumer
+        
+        let messageObserver1 = MessageObserver()
+        let messageObserver2 = MessageObserver()
+        consumer.addObserver(messageObserver1)
+        consumer.addObserver(messageObserver2)
+        
+        for i in 1...10 {
+            DispatchQueue.global().async {
+                producer.produceMessage(Message(id: i, mssg: "mssg\(i)"))
+            }
+        }
+    }
+}
+
+class MessageObserver: Observer {
+    var childObservers: [Observer] = []
+    
+    func addObserver(_ observer: Observer) {
+        childObservers.append(observer)
+    }
 }
 
 extension Array where Element == Int {
@@ -156,3 +184,46 @@ extension Array where Element == Int {
 
 }
 
+class Solution {
+    func solve(_ noOfCourses:  Int, _ source:  [Int], _ destination:  [Int]) -> Int {
+        // create graph
+        var graph: [Int: [Int]] = [:]
+        for i in 1...noOfCourses {
+            graph[i] = []
+        }
+
+        for i in 0..<source.count {
+            let source = source[i]
+            let destination = destination[i]
+            if let dependencies = graph[source] {
+                graph[source] = dependencies + [destination]
+            }
+        }
+
+        var visited = Array(repeating: false, count: noOfCourses)
+
+        for i in 1...noOfCourses {
+            if !visited[i-1] && !DFS(from: i, in: graph, visited: &visited) {
+                return 0
+            }
+        }
+        return 1
+    }
+
+    func DFS(from vertex: Int, in graph: [Int: [Int]], visited: inout [Bool]) -> Bool {
+        let vertexIndex = (vertex - 1)
+        guard !visited[vertexIndex] else {
+            return false
+        }
+        visited[vertexIndex] = true
+        var canBeCompleted = true
+        if let adjVertices = graph[vertex] {
+            for adjV in adjVertices {
+                canBeCompleted = canBeCompleted && DFS(from: adjV, in: graph, visited: &visited)
+            }
+        }
+        return canBeCompleted
+    }
+
+
+}

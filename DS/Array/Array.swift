@@ -290,4 +290,127 @@ struct DSArray {
             return maxSumTuple.3
         }
 
+    ///An n-bit gray code sequence is a sequence of 2n integers where:
+    
+//    Every integer is in the inclusive range [0, 2n - 1],
+//    The first integer is 0,
+//    An integer appears no more than once in the sequence,
+//    The binary representation of every pair of adjacent integers differs by exactly one bit, and
+//    The binary representation of the first and last integers differs by exactly one bit.
+//    Given an integer n, return any valid n-bit gray code sequence.
+    func grayCode(_ n: Int) -> [Int] {
+        var resultGrayCode: [String] = []
+        func binaryOf(_ n: Int, bitCount: Int) -> String {
+            guard n > 0 else {
+                return String(Array(repeating: "0", count: bitCount))
+            }
+            var n = n
+            var binaryArray: [Int] = []
+            while n > 0 {
+                let remainder = n % 2
+                binaryArray.append(remainder)
+                n = n / 2
+            }
+            for _ in stride(from: 0, to: (bitCount - binaryArray.count), by: 1) {
+                binaryArray.append(0)
+            }
+            binaryArray.reverse()
+            var binaryStr = ""
+            for num in binaryArray {
+                binaryStr += "\(num)"
+            }
+            return binaryStr
+        }
+
+        func isDiffOne(_ binary1: String, _ binary2: String) -> Bool {
+            let binary1 = Array(binary1)
+            let binary2 = Array(binary2)
+            var countOfDiff = 0
+            for i in 0..<binary1.count {
+                if binary1[i] != binary2[i] {
+                    if countOfDiff == 1 {
+                        return false
+                    } else {
+                        countOfDiff += 1
+                    }
+                }
+            }
+            return countOfDiff == 1
+        }
+
+        func DFS(from vertex: String,
+                 in graph: [String: [String]],
+                 visited: [String:  Bool],
+                 grayCode: [String]) {
+            guard visited[vertex] == nil else {
+                return
+            }
+            var visited = visited
+            visited[vertex] = true
+            
+            if let adjVertices = graph[vertex] {
+                for adjV in adjVertices {
+                    if visited[adjV] == nil {
+                        DFS(from: adjV, in: graph, visited: visited, grayCode: grayCode + [adjV])
+                    }
+                }
+            } else if grayCode.count == graph.count {
+                 if isDiffOne(grayCode[0], grayCode[grayCode.count - 1]) {
+                     resultGrayCode = grayCode
+                 }
+            }
+        }
+
+        var binaryArray: [String] = []
+//        for i in 0..<Int(pow(2, n)) {
+//            binaryArray.append(binaryOf(i, bitCount: n))
+//        }
+        
+        // create graph
+        var graph: [String: [String]] = [:]
+        for i in 0..<n {
+            let key = binaryArray[i]
+            for j in 0..<n {
+                let value = binaryArray[j]
+                if isDiffOne(key,value) {
+                    if let values = graph[key] {
+                        graph[key] = values + [value]
+                    } else {
+                        graph[key] = [value]
+                    }
+                }
+            }
+        }
+        
+        DFS(from: binaryArray[0],in: graph, visited: [:], grayCode: [])
+        print(resultGrayCode)
+        return []
+    }
+    
+    func longestSubsequenceCount(_ arr:[Int]) -> Int {
+        var longestSC = 0
+        var longestSubsequence: [Int] = []
+        func LSC(_ arr: [Int], _ i: Int, _ subsequence: [Int]) {
+            if i >= arr.count {
+                if subsequence.count > longestSC {
+                    longestSubsequence = subsequence
+                    longestSC = subsequence.count
+                }
+            } else {
+                let lastElement = subsequence[subsequence.count - 1]
+                if arr[i] < lastElement {
+                    LSC(arr, i+1, subsequence)
+                } else {
+                    LSC(arr, i+1, subsequence + [arr[i]])
+                    LSC(arr, i+1, subsequence)
+                }
+            }
+        }
+        
+        for (index, num) in arr.enumerated() {
+            LSC(arr, index + 1, [num])
+        }
+        print(longestSubsequence)
+        return longestSC
+    }
 }

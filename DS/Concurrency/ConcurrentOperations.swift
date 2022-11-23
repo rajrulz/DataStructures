@@ -10,6 +10,7 @@ import UIKit
 
 class ConcurrentOperations {
     /// Block operation work as dispatch group that means we can add multiple operations to a block operation
+    /// Note:- all block operation execute parallely or concurrently.
     func testBlockOperations() {
         let operation = BlockOperation()
         for i in 0..<10 {
@@ -27,6 +28,9 @@ class ConcurrentOperations {
     }
 
     /// download 4 images asynchronously using operation Queues
+    /// operation Queues are by default background queues and we can define maximum concurrent tasks it can execute.
+    /// subclassing Operation is actually a synchronous task thats why apple is able to track the states as -isReady -isExecuting -isFinished or -isCancelld
+    /// but what if we need to support async operation.
     func testOperationQueues() {
         var downloadURLs: [URL] = []
         for _ in 1...12 {
